@@ -39,7 +39,7 @@
   <role rolename="manager-jnx"/>
   <role rolename="admin-gui"/>
   <role rolename="manager-status"/>
-  <user username="bhaskar" password="12471A0352" roles="manager-gui,manager-script,manager-jnx,manager-status,admin-gui"/>
+  <user username="ansible" password="passwd" roles="manager-gui,manager-script,manager-jnx,manager-status,admin-gui"/>
 <!--
   <role rolename="tomcat"/>
   <role rolename="role1"/>
