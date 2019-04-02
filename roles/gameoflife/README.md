@@ -1,12 +1,14 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This role helps in creating a tomcat environment and deploying game of life.
+
+NOTE: if you want to use manager app on tomcat gui use these credentials username: "ansible" , password: "passwd"
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+some basic reqirments are that you should have a ubuntu machine that can connect to internet.
 
 Role Variables
 --------------
@@ -23,9 +25,10 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: appserver(in my casse)
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
+         - gameoflife
 
 License
 -------
