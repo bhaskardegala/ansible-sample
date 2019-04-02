@@ -8,7 +8,7 @@ NOTE: if you want to use manager app on tomcat gui use these credentials usernam
 Requirements
 ------------
 
-some basic reqirments are that you should have a ubuntu machine that can connect to internet.
+some basic reqirments are that you should have a ubuntu machine that can connect to internet and make sure that python was installed on the node
 
 Role Variables
 --------------
@@ -25,6 +25,7 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+    ---
     - hosts: appserver(in my casse)
       become: yes
       roles:
