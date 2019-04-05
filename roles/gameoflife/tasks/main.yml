@@ -127,13 +127,14 @@
     - restart tomcat
   - debug:
       msg: "deploying game of life"
-  - name: "making directory for game of life"
-    file:
-      path: /opt/tomcat/webapps/gameoflife
-      state: directory
-  - name: "deploying game of life"
+  - name: "downloading game of life"
     get_url:
-      url: https://github.com/QT-DevOps/DevOpsIssues/issues/45#issuecomment-399738259 
-      dest: /opt/tomcat/webapps/gameoflife
+      url: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip 
+      dest: /opt/tomcat/webapps/
+  - name: "unzipiing gameoflige"
+    unarchive:
+      src: /opt/tomcat/webapps/gameoflife.zip
+      dest: /opt/tomcat/webapps/
+      remote_src: yes
     notify:
     - restart tomcat 
