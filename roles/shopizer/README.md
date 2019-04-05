@@ -1,12 +1,12 @@
 Role Name
-=========
+===========
 
-A brief description of the role goes here.
+This role helps you in installing maven in your system and download shopizer folder from git.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+some basic reqirments are that you should have a ubuntu machine that can connect to internet and make sure that python was installed on the node
 
 Role Variables
 --------------
@@ -23,9 +23,10 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: {some server}
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
+         - shopizer
 
 License
 -------
