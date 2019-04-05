@@ -34,6 +34,8 @@
     shell: source ~/.bashrc
     args:
       executable: /bin/bash
+  - debug:
+      msg: "initialising install of maven"
   - name: "downloading maven 3.6"
     get_url:
       url: https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/{{ package_name }}-bin.tar.gz
@@ -57,6 +59,8 @@
     shell: source /etc/profile.d/mavenenv.sh
     args:
       executable: /bin/bash
+  - debug:
+      msg: "starting download of shopizer from git"
   - name: "creating a shopizer folder"
     file:
       path: /opt/shopizer
