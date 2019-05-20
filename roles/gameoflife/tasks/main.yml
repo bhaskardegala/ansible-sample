@@ -48,7 +48,7 @@
       append: yes
   - name: "downloading tomcat9"
     get_url:
-      url: https://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.17/bin/{{ package_name }}.tar.gz
+      url: http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.20/bin/{{ package_name }}.tar.gz
       dest: /opt/{{ package_name }}.tar.gz   
   - name: "unzipping tar"
     unarchive:
