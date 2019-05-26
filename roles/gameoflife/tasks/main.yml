@@ -14,7 +14,7 @@
       msg: "installing java as a pre-requirement"
   - name: "install java8"
     apt: 
-      name: default-jdk
+      name: openjdk-8-jdk
       update_cache: yes
       state: present
   - name: "replacing environment file"
