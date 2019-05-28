@@ -17,23 +17,14 @@
       name: openjdk-8-jdk
       update_cache: yes
       state: present
-  - name: "replacing environment file"
-    file:    
-      path: /etc/environment
-      state: absent
   - name: "updating environment file"
     copy: 
       src: copy/environment
       dest: /etc/environment
-  - name: "copying content to bashrc"
-    copy:
-      content: 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre
-                export PATH=$JAVA_HOME/bin:$PATH'
-      dest: ~/.bashrc
-  - name: "refresh bashrc"
-    shell: source ~/.bashrc
-    args:
-      executable: /bin/bash
+  - name: "installing unzip"
+    apt:
+      name: unzip
+      state: present
   - debug: 
       msg: "Downloading and installing tomcat"
   - name: "adding tomcat group"
@@ -70,20 +61,12 @@
       recurse: yes
   - name: "setting catalina file"
     copy:
-      content: 'export CATALINA_HOME=/opt/tomcat'
+      src: copy/.bashrc
       dest: ~/.bashrc
   - name: "refresh bashrc"
     shell: source ~/.bashrc
     args:
       executable: /bin/bash
-  - name: "starting tomcat"
-    shell: ./startup.sh
-    args:
-      chdir: /opt/tomcat/bin
-  - name: "stoping tomcat"
-    shell: ./shutdown.sh
-    args:
-      chdir: /opt/tomcat/bin
   - name: "changing owner for file"
     shell: chown -hR tomcat:tomcat /opt/tomcat/
   - name: "creating tomcat.server file"
@@ -99,42 +82,18 @@
     systemd:
       name: tomcat
       state: started
-  - name: "configuring tomcat-user file"
-    file:
-      path: /opt/tomcat/conf/tomcat-users.xml
-      state: absent
   - name: "updating tomcat-user file"
     copy:
       src: copy/tomcat-users.xml
       dest: /opt/tomcat/conf/
-  - name: "modifing manager context file"
-    file: 
-      path: /opt/tomcat/webapps/manager/META-INF/context.xml
-      state: absent
   - name: "updating manager context file"
     copy: 
       src: copy/manager/context.xml
       dest: /opt/tomcat/webapps/manager/META-INF/
-  - name: "modifing host-manager context file"
-    file: 
-      path: /opt/tomcat/webapps/host-manager/META-INF/context.xml
-      state: absent
   - name: "updating host-manager context file"
     copy: 
       src: copy/host-manager/context.xml
       dest: /opt/tomcat/webapps/host-manager/META-INF/ 
     notify:
     - restart tomcat
-  - debug:
-      msg: "deploying game of life"
-  - name: "downloading game of life"
-    get_url:
-      url: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip 
-      dest: /opt/tomcat/webapps/
-  - name: "unzipiing gameoflige"
-    unarchive:
-      src: /opt/tomcat/webapps/gameoflife.zip
-      dest: /opt/tomcat/webapps/
-      remote_src: yes
-    notify:
-    - restart tomcat 
+
