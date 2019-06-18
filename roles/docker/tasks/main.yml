@@ -22,7 +22,7 @@
       state: present
   - name: "updating apt repository"
     apt_repository: 
-      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable 
+      repo: deb https://download.docker.com/linux/ubuntu xenial stable 
       state: present
   - name: "installing docker"
     apt:
