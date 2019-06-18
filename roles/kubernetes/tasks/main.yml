@@ -12,11 +12,11 @@
       state: present
   - name: "installing packing"
     apt:
-      name: {{item}}
+      name: "{{item}}"
       deb: https://apt.kubernetes.io/ kubernetes-xenial main
       update_cache: yes
       state: present
-      with_items:
+    with_items:
         - kubelet
         - kubeadm
         - kubectl
